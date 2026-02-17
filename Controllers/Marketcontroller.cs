@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webAPI.data;
+using webAPI.Model;
 
 namespace webAPI.Controllers
 {
