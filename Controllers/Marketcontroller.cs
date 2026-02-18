@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webAPI.data;
@@ -8,6 +9,7 @@ namespace webAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class Marketcontroller : ControllerBase
     {
         //hold database connection
@@ -58,6 +60,7 @@ namespace webAPI.Controllers
         }
         //delete a product
         [HttpDelete("{id}")]
+        [Authorize(Policy = "SeniorManagerOnly")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

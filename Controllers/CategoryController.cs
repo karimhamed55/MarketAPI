@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webAPI.data;
@@ -17,8 +18,9 @@ namespace webAPI.Controllers
         {
             _context = context;
         }
-
+       
         [HttpGet("{id}")]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult<CategoryDTO> GetbyID (int id)
 
         {

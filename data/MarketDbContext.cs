@@ -8,6 +8,22 @@ namespace webAPI.data
         { } public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
+        // seeding the admin
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = 55,
+                Name = "admin",
+                Email = "admin@market.com",
+                Password = "adminpassword123",
+                Role = "Admin"
+            });
+        }
 
     }
 }

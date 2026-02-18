@@ -1,23 +1,55 @@
-# Market API
+# 🛒 Market Management System API
 
-A RESTful Web API built with **.NET 8** and **Entity Framework Core** to manage market products and categories. This project demonstrates full CRUD operations and relational data handling using a SQL Server database.
+### *High-Performance Inventory & Security Framework*
 
-## 🚀 Tech Stack
-* **Framework:** .NET 8 Web API
-* **Language:** C#
-* **Database:** SQL Server
-* **ORM:** Entity Framework Core
-* **Documentation:** Swagger / OpenAPI
+---
 
-## ✨ Features
-* **Products Management:** Create, Read, Update, and Delete products.
-* **Categories Management:** Organize products into categories.
-* **Relational Data:** Implements a one-to-many relationship (One Category -> Many Products).
-* **DTO Pattern:** Uses Data Transfer Objects to shape API responses and prevent cycles.
+## 🏗️ System Architecture & Logic
 
-## 📂 Project Structure
-* `Controllers/`: Contains the API endpoints (`MarketController`, `CategoryController`).
-* `Data/`: Database context and configuration.
-* `Models/`: Entity definitions (`Product.cs`, `Category.cs`).
-* `DTOs/`: Data Transfer Objects for clean API responses (`CategoryDTO`, `ProductDTO`).
-* `postman/`: Contains the exported Postman collection for testing.
+This project represents a professional-grade transition from a basic CRUD application to a secure, enterprise-ready API. It is built with a focus on **Separation of Concerns** and **Data Integrity**.
+
+* **Framework Core:** Powered by **.NET 8** for high-performance request handling.
+* **ORM & Database:** Utilizes **Entity Framework Core** with **SQL Server** to manage complex relational data.
+* **Relational Mapping:** Implements a strict **One-to-Many** relationship where Categories act as parent containers for Market products.
+* **Data Transfer Pattern (DTO):** Employs the DTO pattern to eliminate circular references and protect internal database schemas from external exposure.
+
+---
+
+## 🔐 Advanced Security Implementation
+
+The API features a multi-layered authentication and authorization pipeline, moving beyond simple identity checks into rule-based logic.
+
+### **1. JWT Bearer Authentication**
+
+* Implements a secure "handshake" protocol where users exchange credentials for a cryptographically signed **JSON Web Token**.
+* All sensitive methods are intercepted by a middleware pipeline that validates token integrity and expiration.
+
+### **2. Role-Based Access Control (RBAC)**
+
+* Distinguishes between `Admin` and `User` roles to govern system permissions.
+* **Seeding Logic:** Automatically prepopulates the database with a default **Super Admin** account during the migration process for immediate environment setup.
+
+### **3. Policy-Based Authorization**
+
+* Includes a specialized **`SeniorManagerOnly`** policy.
+* This policy evaluates **Custom Claims** (like `JobLevel`) within the JWT, allowing for dynamic security rules that aren't tied to static roles.
+
+---
+
+## 📂 Project Structure Overview
+
+* **`Controllers/`**: Manages the API surface area for `Market`, `Category`, and `Account` (Identity).
+* **`Models/`**: Houses the core domain entities, including the newly integrated `User` and `Role` definitions.
+* **`DTOs/`**: Dedicated objects for `Login`, `Register`, and `Market` data exchange to maintain clean API contracts.
+* **`Data/`**: Contains the `ApplicationDbContext` and the automated **Admin Seeding** configurations.
+
+---
+
+## 🛠️ Technical Implementation Details
+
+* **Namespace:** `webAPI`
+* **Authentication Scheme:** `JwtBearerDefaults.AuthenticationScheme`
+* **Validation:** Implements `[FromBody]` and `[ApiController]` attributes to ensure strict JSON payload validation.
+* **Documentation:** Integrated with **Swagger/OpenAPI** for real-time endpoint testing and schema visualization.
+
+---
